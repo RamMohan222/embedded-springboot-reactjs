@@ -24,7 +24,7 @@ The following guides illustrate how to use some features concretely:
 ### APP URI
 https://localhost:8443/api/
 
-### Calling Secured endpoint with truststore and RestTemplate.
+### Calling the secured endpoint with truststore and RestTemplate.
 ```java
 package com.example.embeddedspringbootreactjs;
 
