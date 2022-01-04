@@ -1,5 +1,8 @@
 # Read Me First
 
+In this springboot example, it enables the https and run on the port 8443. And in test case there is an example to call the secured (https) endpoint with rest template.
+For that we have already created keystore.p12 for server side configuration. And also create the turststore.ts for client side configuration.
+
 # Getting Started
 
 ### Reference Documentation
@@ -20,3 +23,26 @@ The following guides illustrate how to use some features concretely:
 
 ### APP URI
 https://localhost:8443/api/
+
+### Calling Secured endpoint with truststore and RestTemplate.
+```java
+package com.example.embeddedspringbootreactjs;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.web.client.RestTemplate;
+
+@SpringBootTest
+class EmbeddedSpringbootReactjsApplicationTests {
+
+	@Test
+	void contextLoads() {
+		System.setProperty("javax.net.ssl.trustStore", "truststore.ts");
+		System.setProperty("javax.net.ssl.trustStorePassword", "password");
+		RestTemplate template = new RestTemplate();
+		String data = template.getForObject("https://localhost:8443/api/users/messages", String.class);
+		System.out.println(data);
+	}
+
+}
+```
